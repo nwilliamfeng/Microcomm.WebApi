@@ -15,7 +15,7 @@ namespace Microcomm.Web.Http.Autofac
 
         public static IContainer RegistComponentsWithSpecifiedSuffix(this ContainerBuilder builder,string filter, params string[] typeSuffixs)
         {
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers(System.Web.HttpContext.Current.ApplicationInstance.GetWebEntryAssembly());
             var amblys = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.ManifestModule.Name.Contains(filter)).ToList();
 
             typeSuffixs.ToList().ForEach(suffix =>
@@ -28,5 +28,22 @@ namespace Microcomm.Web.Http.Autofac
         
             return builder.Build();
         }
+
+        //static private Assembly GetWebEntryAssembly()
+        //{
+        //    if (System.Web.HttpContext.Current == null ||
+        //        System.Web.HttpContext.Current.ApplicationInstance == null)
+        //    {
+        //        return null;
+        //    }
+
+        //    var type = System.Web.HttpContext.Current.ApplicationInstance.GetType();
+        //    while (type != null && type.Namespace == "ASP")
+        //    {
+        //        type = type.BaseType;
+        //    }
+
+        //    return type == null ? null : type.Assembly;
+        //}
     }
 }

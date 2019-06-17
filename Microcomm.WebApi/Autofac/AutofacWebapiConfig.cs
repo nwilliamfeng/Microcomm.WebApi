@@ -14,9 +14,9 @@ namespace Microcomm.Web.Http.Autofac
     {
         public static IContainer Container { get; private set; }
 
-        public static void Initialize(HttpConfiguration config)
+        public static void Initialize(HttpConfiguration config,string filter,string[] registTypeSuffixs)
         {
-            Initialize(config, RegisterServices(new ContainerBuilder()));  
+            Initialize(config, RegisterServices(new ContainerBuilder(),filter,registTypeSuffixs));  
         }
 
 
@@ -25,10 +25,10 @@ namespace Microcomm.Web.Http.Autofac
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
-        private static IContainer RegisterServices(ContainerBuilder builder)
+        private static IContainer RegisterServices(ContainerBuilder builder, string filter, string[] registTypeSuffixs)
         {
            
-            Container=  builder.RegistComponentsWithSpecifiedSuffix("Repository","Cache","Service");
+            Container=  builder.RegistComponentsWithSpecifiedSuffix(filter,registTypeSuffixs);
             return Container;
         }
 
