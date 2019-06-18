@@ -13,23 +13,20 @@ namespace Microcomm.Web.Http.Autofac
 {
     public static class AutofacWebapiConfig
     {
-        public static IContainer Container { get; private set; }
+        public static IContainer Container { get;  private set; }
 
-        public static void Initialize( HttpConfiguration config, string filter, string[] registTypeSuffixs)
+        public static void Initialize(HttpApplication application,  HttpConfiguration config, string filter, string[] registTypeSuffixs)
         {
-            Initialize(config, RegisterServices(new ContainerBuilder(), filter, registTypeSuffixs));
-        }
-
-
-        private static void Initialize(HttpConfiguration config, IContainer container)
-        {
+            var container = RegisterServices(application, new ContainerBuilder(), filter, registTypeSuffixs);        
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
-        private static IContainer RegisterServices(ContainerBuilder builder, string filter, string[] registTypeSuffixs)
+ 
+
+        private static IContainer RegisterServices(HttpApplication application, ContainerBuilder builder, string filter, string[] registTypeSuffixs)
         {
 
-            Container = builder.RegistComponentsWithSpecifiedSuffix(filter, registTypeSuffixs);
+            Container = builder.RegistComponentsWithSpecifiedSuffix(application, filter, registTypeSuffixs);
             return Container;
         }
 

@@ -16,10 +16,10 @@ namespace Microcomm.Web.Http.Autofac
 
       
 
-        public static IContainer RegistComponentsWithSpecifiedSuffix(this ContainerBuilder builder, string filter, params string[] typeSuffixs)
+        public static IContainer RegistComponentsWithSpecifiedSuffix(this ContainerBuilder builder,HttpApplication application , string filter, params string[] typeSuffixs)
         {
 
-            builder.RegisterApiControllers(System.Web.HttpContext.Current.ApplicationInstance.GetWebEntryAssembly());
+            builder.RegisterApiControllers(application.GetWebEntryAssembly());
             //注意用AppDomain.CurrentDomain.GetAssemblies() 在debug模式下有时会无法加载dll，这里用BuildManager.GetReferencedAssemblies()进行替换
             var amblys = BuildManager.GetReferencedAssemblies().OfType<Assembly>().Where(x => x.ManifestModule.Name.Contains(filter)).ToList();
 
