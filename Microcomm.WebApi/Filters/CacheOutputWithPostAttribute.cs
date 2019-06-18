@@ -28,7 +28,6 @@ namespace Microcomm.Web.Http.Filters
             else
             {
                 var oldParas = paramDic[action];
-
                 var currParas = actionContext.ActionArguments.Select(x => x.Value).ToList();
                 if (oldParas.Count != currParas.Count)
                 {

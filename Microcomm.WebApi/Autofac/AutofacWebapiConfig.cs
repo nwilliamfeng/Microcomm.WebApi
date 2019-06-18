@@ -6,17 +6,18 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+
  
 
 namespace Microcomm.Web.Http.Autofac
 {
-    public class AutofacWebapiConfig
+    public static class AutofacWebapiConfig
     {
         public static IContainer Container { get; private set; }
 
-        public static void Initialize(HttpConfiguration config,string filter,string[] registTypeSuffixs)
+        public static void Initialize( HttpConfiguration config, string filter, string[] registTypeSuffixs)
         {
-            Initialize(config, RegisterServices(new ContainerBuilder(),filter,registTypeSuffixs));  
+            Initialize(config, RegisterServices(new ContainerBuilder(), filter, registTypeSuffixs));
         }
 
 
@@ -27,12 +28,12 @@ namespace Microcomm.Web.Http.Autofac
 
         private static IContainer RegisterServices(ContainerBuilder builder, string filter, string[] registTypeSuffixs)
         {
-           
-            Container=  builder.RegistComponentsWithSpecifiedSuffix(filter,registTypeSuffixs);
+
+            Container = builder.RegistComponentsWithSpecifiedSuffix(filter, registTypeSuffixs);
             return Container;
         }
 
-       
+        
 
     }
 }

@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using Autofac;
+using Microcomm.Security;
 using Microcomm.Web.Http.Autofac;
  
 
