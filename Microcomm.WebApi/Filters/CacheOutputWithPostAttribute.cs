@@ -5,13 +5,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
 using WebApi.OutputCache.V2;
 
 namespace Microcomm.Web.Http.Filters
 {
     /// <summary>
-    /// 
+    /// 适用于post方法的缓存
     /// </summary>
     public class CacheOutputWithPostAttribute : CacheOutputAttribute
     {
