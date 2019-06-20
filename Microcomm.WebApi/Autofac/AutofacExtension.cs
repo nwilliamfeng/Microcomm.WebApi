@@ -27,7 +27,7 @@ namespace Microcomm.Web.Http.Autofac
             {
                 var ambly = amblys.FirstOrDefault(x => x.GetTypes().Where(t => t.Name.EndsWith(suffix) && t.IsClass && !t.IsAbstract).Count() > 0);
                 if (ambly != null)
-                    builder.RegisterAssemblyTypes(ambly).Where(t => t.Name.EndsWith(suffix)).AsImplementedInterfaces();
+                    builder.RegisterAssemblyTypes(ambly).Where(t => t.Name.EndsWith(suffix)).AsSelf().AsImplementedInterfaces();
             });
 
 

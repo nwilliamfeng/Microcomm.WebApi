@@ -98,6 +98,8 @@ namespace Microcomm.Web.Http.Filters
             if (string.IsNullOrEmpty(token))
                 return new Tuple<IPrincipal, int>(null,StatusCodes.TOKEN_NOT_FOUND);
             //验证用户合法性，如果合法，构建声明式安全主题权限模式并返回，若用户验证不通过返回空
+            if (AutofacWebapiConfig.Container == null)
+                throw new InvalidOperationException("未找到autofac容器");
             using (var scope = AutofacWebapiConfig.Container.BeginLifetimeScope())
             {
                 var authService = scope.Resolve<ITokenIdentify>();

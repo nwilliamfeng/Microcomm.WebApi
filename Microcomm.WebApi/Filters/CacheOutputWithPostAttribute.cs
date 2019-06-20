@@ -15,6 +15,7 @@ namespace Microcomm.Web.Http.Filters
     public class CacheOutputWithPostAttribute : CacheOutputAttribute
     {
         private static Dictionary<string, List<object>> paramDic = new Dictionary<string, List<object>>();
+       
         private bool _result = false;
 
         public override Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
@@ -41,12 +42,11 @@ namespace Microcomm.Web.Http.Filters
                 }
                 else
                     _result= true;
+               
             }
             return base.OnActionExecutingAsync(actionContext, cancellationToken);
           
         }
-
-       
 
         protected override bool IsCachingAllowed(HttpActionContext actionContext, bool anonymousOnly)
         {
