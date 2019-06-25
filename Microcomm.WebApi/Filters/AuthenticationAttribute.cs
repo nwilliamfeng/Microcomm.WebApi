@@ -76,7 +76,7 @@ namespace Microcomm.Web.Http.Filters
                     default:
                         break;
                 }
-                context.ErrorResult = context.Request.JsonResult(false.ToJson(msg==null? "授权失败":msg).SetStatusCode(pt.Item2));
+                context.ErrorResult = context.Request.JsonResult(new JsonResultData().SetFail(msg==null? "授权失败":msg).SetStatusCode(pt.Item2));
             }
             else
             {
