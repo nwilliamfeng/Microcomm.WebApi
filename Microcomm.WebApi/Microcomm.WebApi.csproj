@@ -50,6 +50,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
@@ -67,12 +68,14 @@
     <Compile Include="Autofac\AutofacExtension.cs" />
     <Compile Include="Autofac\AutofacWebapiConfig.cs" />
     <Compile Include="Extensions\ApplicationInstanceExtension.cs" />
+    <Compile Include="Extensions\HttpRequestMessageExtension.cs" />
     <Compile Include="Filters\AuthenticationAttribute.cs" />
     <Compile Include="Filters\CacheOutputWithPostAttribute.cs" />
     <Compile Include="Filters\GlobalExceptionFilter.cs" />
     <Compile Include="Filters\GlobalLogFilter.cs" />
     <Compile Include="Filters\JObjectParamValidateAttribute.cs" />
     <Compile Include="Extensions\JsonResultExtension.cs" />
+    <Compile Include="Handlers\IPFilterHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
